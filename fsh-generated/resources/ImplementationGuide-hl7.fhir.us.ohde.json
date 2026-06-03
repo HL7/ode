@@ -1,0 +1,59 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "hl7.fhir.us.ohde",
+  "url": "http://hl7.org/fhir/us/ohde/ImplementationGuide/hl7.fhir.us.ohde",
+  "version": "0.1.0",
+  "name": "OHDEIG",
+  "title": "Oral Health Data Exchange Implementation Guide",
+  "status": "draft",
+  "publisher": "HL7 Payer/Provider Information Exchange Work Group",
+  "contact": [
+    {
+      "name": "HL7 Payer/Provider Information Exchange Work Group",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://hl7.org/Special/committees/claims"
+        },
+        {
+          "system": "email",
+          "value": "pie@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "description": "Oral Health Data Exchange Implementation Guide",
+  "packageId": "hl7.fhir.us.ohde",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "definition": {
+    "resource": [],
+    "page": {
+      "nameUrl": "toc.html",
+      "title": "Table of Contents",
+      "generation": "html",
+      "page": [
+        {
+          "nameUrl": "index.html",
+          "title": "Oral Health Data Exchange Implementation Guide",
+          "generation": "markdown"
+        }
+      ]
+    },
+    "parameter": [
+      {
+        "code": "copyrightyear",
+        "value": "2026+"
+      },
+      {
+        "code": "releaselabel",
+        "value": "ci-build"
+      },
+      {
+        "code": "path-history",
+        "value": "http://hl7.org/fhir/us/ohde/history.html"
+      }
+    ]
+  }
+}
