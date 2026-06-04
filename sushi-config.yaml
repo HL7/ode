@@ -3,11 +3,11 @@
 # │  used properties are included. For a list of all supported properties and their functions,     │
 # │  see: https://fshschool.org/docs/sushi/configuration/.                                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: hl7.fhir.us.ohde
-canonical: http://hl7.org/fhir/us/ohde
-name: OHDEIG
-title: "Oral Health Data Exchange Implementation Guide"
-description: "Oral Health Data Exchange Implementation Guide"
+id: hl7.fhir.us.ode
+canonical: http://hl7.org/fhir/us/ode
+name: ODEIG
+title: "Oral health Data Exchange Implementation Guide"
+description: "Oral health Data Exchange Implementation Guide"
 status: draft # draft | active | retired | unknown
 version: 0.1.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
@@ -45,7 +45,7 @@ publisher:
 #
 pages:
    index.md:
-     title: Oral Health Data Exchange Implementation Guide
+     title: Oral health Data Exchange Implementation Guide
 #
 #
 # The parameters property represents IG.definition.parameter. Rather
