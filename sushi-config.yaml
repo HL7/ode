@@ -46,6 +46,16 @@ publisher:
 pages:
    index.md:
      title: Oral health Data Exchange Implementation Guide
+   UC01-Medical-to-Dental-Tongue-Cancer.md:
+     title: "UC01: Head & Neck Cancer — Prior Authorization, Dental Clearance, and Pre-Radiation Dental Treatment"
+   UC02-tooth-extraction.md:
+     title: "UC02: Extraction of Tooth #30 Following Root Canal Failure"
+   UC03-Pediatric-Referral.md:
+     title: "UC03: Pediatric Periodontitis Due to Poorly Managed Type 1 Diabetes"
+   UC04-Teledentistry-Referral.md:
+     title: "UC04: Teledentistry Provider-to-In-Office Dental Referral"
+   UC05-SleepApnea_Referral.md:
+     title: "UC05: AI-Assisted OSA Screening at a Dental Visit → Sleep Medicine Referral"
 
 #
 #
@@ -72,6 +82,12 @@ pages:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
+  "Use Cases":
+    "UC01: Head & Neck Cancer": UC01-Medical-to-Dental-Tongue-Cancer.html
+    "UC02: Tooth Extraction": UC02-tooth-extraction.html
+    "UC03: Pediatric Referral": UC03-Pediatric-Referral.html
+    "UC04: Teledentistry": UC04-Teledentistry-Referral.html
+    "UC05: Sleep Apnea": UC05-SleepApnea_Referral.html
   Artifacts: artifacts.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
