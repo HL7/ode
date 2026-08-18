@@ -38,6 +38,31 @@
           "nameUrl": "index.html",
           "title": "Oral health Data Exchange Implementation Guide",
           "generation": "markdown"
+        },
+        {
+          "nameUrl": "UC01-Medical-to-Dental-Tongue-Cancer.html",
+          "title": "UC01: Head & Neck Cancer — Prior Authorization, Dental Clearance, and Pre-Radiation Dental Treatment",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "UC02-tooth-extraction.html",
+          "title": "UC02: Extraction of Tooth #30 Following Root Canal Failure",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "UC03-Pediatric-Referral.html",
+          "title": "UC03: Pediatric Periodontitis Due to Poorly Managed Type 1 Diabetes",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "UC04-Teledentistry-Referral.html",
+          "title": "UC04: Teledentistry Provider-to-In-Office Dental Referral",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "UC05-SleepApnea_Referral.html",
+          "title": "UC05: AI-Assisted OSA Screening at a Dental Visit → Sleep Medicine Referral",
+          "generation": "markdown"
         }
       ]
     },

@@ -9,4 +9,9 @@
 <page key="artifacts" name="Artifacts Summary"/>
 <page key="index" name="Oral health Data Exchange Implementation Guide"/>
 <page key="toc" name="Table of Contents"/>
+<page key="UC01-Medical-to-Dental-Tongue-Cancer" name="UC01: Head &amp; Neck Cancer — Prior Authorization, Dental Clearance, and Pre-Radiation Dental Treatment"/>
+<page key="UC02-tooth-extraction" name="UC02: Extraction of Tooth #30 Following Root Canal Failure"/>
+<page key="UC03-Pediatric-Referral" name="UC03: Pediatric Periodontitis Due to Poorly Managed Type 1 Diabetes"/>
+<page key="UC04-Teledentistry-Referral" name="UC04: Teledentistry Provider-to-In-Office Dental Referral"/>
+<page key="UC05-SleepApnea_Referral" name="UC05: AI-Assisted OSA Screening at a Dental Visit → Sleep Medicine Referral"/>
 </specification>

@@ -13,6 +13,28 @@
   <li>
     <a href="index.html">Home</a>
   </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Use Cases
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="UC01-Medical-to-Dental-Tongue-Cancer.html">UC01: Head &amp; Neck Cancer</a>
+      </li>
+      <li>
+        <a href="UC02-tooth-extraction.html">UC02: Tooth Extraction</a>
+      </li>
+      <li>
+        <a href="UC03-Pediatric-Referral.html">UC03: Pediatric Referral</a>
+      </li>
+      <li>
+        <a href="UC04-Teledentistry-Referral.html">UC04: Teledentistry</a>
+      </li>
+      <li>
+        <a href="UC05-SleepApnea_Referral.html">UC05: Sleep Apnea</a>
+      </li>
+    </ul>
+  </li>
   <li>
     <a href="artifacts.html">Artifacts</a>
   </li>
