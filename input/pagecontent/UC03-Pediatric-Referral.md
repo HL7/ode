@@ -22,7 +22,7 @@
   - [Coverage Resource Data](#2-coverage-resource-data)
   - [Organization Resource Data](#3-organization-resource-data)
   - [Practitioner Resource Data](#4-practitioner-resource-data)
-  - [Workflow and Service Data](#5-workflow-and-service-data)
+- [Workflow and Service Data](#5-workflow--service-data)
   - [Clinical Codes and Mappings](#6-clinical-codes--mappings)
   - [Timeline and Dates](#7-timeline--dates)
 

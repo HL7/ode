@@ -4,15 +4,15 @@
 
 The Oral Health Interoperability Implementation Guide provides a standardized approach for representing and exchanging oral health information using HL7® FHIR®.
 
-This guide supports interoperable exchange of oral health information across dental providers, medical providers, payers, public health organizations, health information networks, patients, and technology vendors. By establishing a common implementation framework, the guide seeks to improve care coordination, reduce administrative burden, and enable integration of oral health information into the broader health care ecosystem.
+This guide defines the FHIR-based interoperability required for exchanging oral health information across clinical, payer, and patient-facing workflows. By establishing a common implementation framework, the guide seeks to improve care coordination, reduce administrative burden, and enable integration of oral health information into the broader health care ecosystem.
+
+This implementation guide was developed through the Oral Health Interoperability Alliance (OHIA), a multi-sector collaboration dedicated to advancing the secure exchange of oral and medical health information. The work is supported by stakeholders across the oral health ecosystem, including the American Dental Association (ADA), the Federal Electronic Health Record Modernization Program (the FEHRM), the Dental Standards Institute (DSI), health care providers, technology vendors, payers, standards organizations, and government partners. The guide reflects a shared commitment to improving interoperability through the adoption and implementation of open standards.
 
 ## Background
 
 Although significant progress has been made in health care interoperability through the adoption of open standards and health information exchange networks, oral health information remains difficult to exchange across organizational and technology boundaries.
 
-Patients frequently have limited access to their dental records. Dental and medical providers often lack efficient mechanisms to exchange information. Health information networks and interoperability initiatives have historically focused on medical data exchange, resulting in limited access to oral health information during care coordination, quality measurement, public health, and administrative workflows. As oral health becomes increasingly recognized as an essential component of whole-person care, the need for standardized oral health interoperability has become increasingly urgent. 【1-210bfb】【2-3429b1】
-
-This implementation guide was developed through the Oral Health Interoperability Alliance (OHIA), a multi-sector collaboration dedicated to advancing the secure exchange of oral and medical health information. The work is sponsored by OHIA and supported by stakeholders across the oral health ecosystem, including the American Dental Association (ADA), the Federal Electronic Health Record (EHR) Modernization Program, the Dental Standards Institute (DSI), health care providers, technology vendors, payers, standards organizations, and government partners. The guide reflects a shared commitment to improving interoperability through the adoption and implementation of open standards. 【3-47803e】【2-3429b1】【1-210bfb】
+Patients frequently have limited access to their dental records. Dental and medical providers often lack efficient mechanisms to exchange information. Health information networks and interoperability initiatives have historically focused on medical data exchange, resulting in limited access to oral health information during care coordination, quality measurement, public health, and administrative workflows. As oral health becomes increasingly recognized as an essential component of whole-person care, the need for standardized oral health interoperability has become increasingly urgent.
 
 ## Purpose
 
@@ -24,20 +24,21 @@ This guide supports the broader goal of making health care simpler, safer, and m
 
 This implementation guide provides guidance and conformance resources for the exchange of oral health information using FHIR.
 
-Topics addressed in this guide include:
+## Use Cases
 
-* Oral health conditions and findings
-* Oral examinations and assessments
-* Dental procedures and treatments
-* Periodontal assessments
-* Caries assessments
-* Oral health risk assessments
+These scenarios represent the core interoperability workflows addressed by this guide and inform the profiles, extensions, terminology, and examples defined throughout the publication.
+
+* Oral health clinical data exchange, including patterns for exchanging images
 * Medical-dental interoperability
+* Dental-to-dental interoperability
 * Referrals and care coordination
-* Quality measurement and reporting
-* Exchange of oral health information across health care settings
+* Patient access to oral health information
+* Integration with CARIN Blue Button
+* Integration with CARIN Digital Insurance Card
+* Integration with Da Vinci implementation guides for prior authorization and other use cases
+* SMART on FHIR for dental professionals
 
-This guide focuses on interoperability requirements and implementation guidance. It does not define clinical practice guidelines, reimbursement requirements, certification criteria, or local operational workflows.
+This guide focuses on interoperability requirements and implementation guidance. It does not define clinical practice guidelines, reimbursement requirements, certification criteria, or local operational workflows. This guide will reuse as much of U.S. Core, Da Vinci, and CARIN guides as feasible, extending only when necessary to support the unique business of dental.
 
 ## How to Use This Guide
 
@@ -89,17 +90,6 @@ Stakeholders supporting interoperability programs, standards initiatives, and po
 
 These sections provide context regarding the challenges, opportunities, and implementation considerations relevant to oral health interoperability.
 
-### Quality Measurement Stakeholders
-
-Organizations supporting quality improvement and digital quality measurement should review:
-
-* Quality Measurement Guidance
-* Profiles
-* Terminology
-* Examples
-
-These sections describe how oral health information can be represented consistently for quality measurement and reporting purposes.
-
 ## Guide Structure
 
 | Section | Description |
@@ -122,31 +112,31 @@ The development of this guide was informed by the following principles. These pr
 
 ### Commitment to Implementation
 
-Standards create value only when implemented. This guide is intended to support real-world adoption and deployment of interoperable solutions throughout the oral health ecosystem. 【4-5449b0】【6-8a3a98】
+Standards create value only when implemented. This guide is intended to support real-world adoption and deployment of interoperable solutions throughout the oral health ecosystem.
 
 ### Patient-Centered Access
 
-Patients should be able to securely access and share their oral health information with authorized caregivers and providers of their choice. 【4-5449b0】【6-8a3a98】
+Patients should be able to securely access and share their oral health information with authorized caregivers and providers of their choice.
 
 ### Interoperability and Open Standards
 
-Open, consensus-based standards promote scalable, sustainable, and vendor-neutral interoperability across health care settings. 【4-5449b0】【6-8a3a98】
+Open, consensus-based standards promote scalable, sustainable, and vendor-neutral interoperability across health care settings.
 
 ### Security and Privacy
 
-The exchange of oral health information must protect patient privacy and support appropriate security safeguards across systems and organizations. 【4-5449b0】【6-8a3a98】
+The exchange of oral health information must protect patient privacy and support appropriate security safeguards across systems and organizations.
 
 ### Collaboration and Innovation
 
-Meaningful interoperability requires collaboration among providers, payers, technology vendors, standards organizations, government agencies, and patients. 【4-5449b0】【5-b38258】
+Meaningful interoperability requires collaboration among providers, payers, technology vendors, standards organizations, government agencies, and patients.
 
 ### Whole-Person Health
 
-Oral health information should be connected to broader health information to support coordinated care, improve patient outcomes, and advance whole-person health. 【5-b38258】
+Oral health information should be connected to broader health information to support coordinated care, improve patient outcomes, and advance whole-person health.
 
 ## Development and Governance
 
-This implementation guide is maintained through the Oral Health Interoperability Alliance (OHIA). OHIA is a multi-sector coalition committed to advancing the adoption and implementation of interoperable oral health solutions through collaboration, open standards, testing, and implementation activities. OHIA is not a standards development organization and does not publish normative standards. Rather, OHIA seeks to support the adoption and implementation of standards developed through recognized standards development organizations, including HL7®. 【3-47803e】【7-0a723f】
+This implementation guide is maintained through the Oral Health Interoperability Alliance (OHIA). OHIA is a multi-sector coalition committed to advancing the adoption and implementation of interoperable oral health solutions through collaboration, open standards, testing, and implementation activities. OHIA is not a standards development organization and does not publish normative standards. Rather, OHIA seeks to support the adoption and implementation of standards developed through recognized standards development organizations, including HL7®.
 
 ## Relationship to Other Standards
 
@@ -161,6 +151,3 @@ Oral health interoperability continues to evolve alongside broader health care i
 ## Acknowledgements
 
 This implementation guide was developed through the contributions of members and stakeholders participating in the Oral Health Interoperability Alliance, including representatives from provider organizations, health plans, health information networks, technology vendors, standards organizations, government agencies, patient advocacy organizations, and subject matter experts dedicated to advancing oral health interoperability.
-
-
-My one editorial suggestion: before locking this down, decide whether this IG is primarily an oral health data exchange IG or an oral health interoperability ecosystem IG. If it is the former, I'd tighten the scope around exchange/use cases. If it is the latter, I'd add a dedicated "Use Cases" section to the homepage similar to Genomics Reporting and US Core. That usually tests very well with implementers because they can immediately determine whether the IG is relevant to their work.

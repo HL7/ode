@@ -14,10 +14,17 @@ fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2026+
 releaseLabel: ci-build
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
-# jurisdiction: urn:iso:std:iso:3166#US "United States of America" # https://www.hl7.org/fhir/valueset-jurisdiction.html
+jurisdiction: urn:iso:std:iso:3166#US "United States of America" # https://www.hl7.org/fhir/valueset-jurisdiction.html
+
+extension:
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+    valueCode: draft
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-wg
+    valueCode: claims
+
 publisher:
-  name: HL7 Payer/Provider Information Exchange Work Group
-  url: https://hl7.org/Special/committees/claims
+  name: HL7 International / Payer/Provider Information Exchange Work Group
+  url: http://hl7.org/Special/committees/claims
   email: pie@lists.hl7.org
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
@@ -99,12 +106,12 @@ menu:
 # contact directly and follow the format outlined in the ImplementationGuide resource and
 # ContactDetail.
 #
-# contact:
-#   - name: Bob Smith
-#     telecom:
-#       - system: email # phone | fax | email | pager | url | sms | other
-#         value: bobsmith@example.org
-#         use: work
+contact:
+  - name: Mark Marciante
+    telecom:
+      - system: email # phone | fax | email | pager | url | sms | other
+        value: mark.marciante@leavittpartners.com
+        use: work
 #
 #
 # The global property corresponds to the IG.global property, but it

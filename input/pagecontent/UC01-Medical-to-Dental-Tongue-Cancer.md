@@ -16,10 +16,9 @@
   - [CDT-to-CPT Crosswalk for Medical Billing](#cdt-to-cpt-crosswalk-for-medical-billing)
   - [LOINC Codes in Scope](#loinc-codes-in-scope)
 - [Appendix: Data](#appendix-data)
-  - [Coverage Details](#appendix-coverage-details)
-  - [Provider Data](#appendix-provider-data)
-  - [Clinical Values](#appendix-clinical-values)
-
+- [Coverage Details](#2-coverage-resource-data)
+- [Provider Data](#4-provider-resource-data)
+- [Clinical Codes & Mappings](#6-clinical-codes--mappings)
 ---
 
 ## Section I: Business Overview
@@ -332,7 +331,7 @@ LOINC codes appear in `Observation.code`, `DiagnosticReport.code`, and `Document
 
 ---
 
-### 4. Practitioner Resource Data
+### 4. Provider Resource Data
 
 #### Dr. Thomas Galloway — Radiation Oncology
 
