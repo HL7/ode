@@ -1,5 +1,5 @@
 # Oral Health Interoperability Implementation Guide
-
+> **Draft content:** This implementation guide is under active development. The sections below describe the intended scope and structure; detailed requirements, FHIR artifacts, examples, and implementation guidance will be added in future iterations.
 ## Introduction
 
 The Oral Health Interoperability Implementation Guide provides a standardized approach for representing and exchanging oral health information using HL7® FHIR®.
@@ -25,7 +25,7 @@ This guide supports the broader goal of making health care simpler, safer, and m
 This implementation guide provides guidance and conformance resources for the exchange of oral health information using FHIR.
 
 ## Use Cases
-
+**Detailed use-case pages are drafted and will evolve with stakeholder review and connectathon testing.**
 These scenarios represent the core interoperability workflows addressed by this guide and inform the profiles, extensions, terminology, and examples defined throughout the publication.
 
 * Oral health clinical data exchange, including patterns for exchanging images
@@ -42,9 +42,12 @@ This guide focuses on interoperability requirements and implementation guidance.
 
 ## How to Use This Guide
 
+**This is under active development** As technical content is added, implementers will find profiles, extensions, terminology, capability statements, and examples in the corresponding sections.
+
 This guide is organized to support a variety of audiences and implementation needs.
 
 ### New Readers
+
 
 Readers who are new to oral health interoperability should begin with:
 
@@ -91,6 +94,8 @@ Stakeholders supporting interoperability programs, standards initiatives, and po
 These sections provide context regarding the challenges, opportunities, and implementation considerations relevant to oral health interoperability.
 
 ## Guide Structure
+
+**The sections listed below describe the planned structure of this guide. Content availability will expand over time.**
 
 | Section | Description |
 |----------|-------------|
@@ -139,6 +144,7 @@ Oral health information should be connected to broader health information to sup
 This implementation guide is maintained through the Oral Health Interoperability Alliance (OHIA). OHIA is a multi-sector coalition committed to advancing the adoption and implementation of interoperable oral health solutions through collaboration, open standards, testing, and implementation activities. OHIA is not a standards development organization and does not publish normative standards. Rather, OHIA seeks to support the adoption and implementation of standards developed through recognized standards development organizations, including HL7®.
 
 ## Relationship to Other Standards
+**Specific dependencies and implementation relationships are under development.**
 
 This guide is intended to align with existing health care interoperability standards and implementation guides wherever possible. The guide leverages FHIR and seeks to promote consistent implementation patterns that support integration across medical, dental, payer, public health, and consumer-facing systems.
 
