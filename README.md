@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
-# ohde
 
-=======
 # Oral Health Data Exchange (ODE) Implementation Guide
 
 ## Overview
@@ -103,4 +100,3 @@ OHIA is not a standards development organization and does not publish normative 
 ## License
 
 See the repository license for details.
->>>>>>> Stashed changes
