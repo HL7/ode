@@ -1,0 +1,36 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ode-diagnosticreport",
+  "url": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-diagnosticreport",
+  "name": "ODEDiagnosticReport",
+  "title": "ODE Diagnostic Report",
+  "status": "draft",
+  "description": "A diagnostic report arising during a referral episode, inheriting the US Core DiagnosticReport Note profile. Created via POST /DiagnosticReport directly, or as part of an interim-content bundle via $append-interim.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DiagnosticReport",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DiagnosticReport.encounter",
+        "path": "DiagnosticReport.encounter",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/ode/StructureDefinition/ode-encounter"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.conclusion",
+        "path": "DiagnosticReport.conclusion",
+        "mustSupport": true
+      }
+    ]
+  }
+}

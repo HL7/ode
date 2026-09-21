@@ -1,0 +1,85 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ode-medication-list",
+  "url": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-medication-list",
+  "name": "ODEMedicationList",
+  "title": "ODE Medication List",
+  "status": "draft",
+  "description": "A point-in-time medication list conveyed with a referral so the receiving clinician has the patient's current medications before the encounter. Inherits base FHIR List (US Core has no List profile) — one of the two ODE classes that don't inherit US Core, the other being ODEReferralTask. Entries reference US Core MedicationRequest (ordered, or patient-reported via reportedBoolean).",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "List",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/List",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "List.status",
+        "path": "List.status",
+        "fixedCode": "current"
+      },
+      {
+        "id": "List.mode",
+        "path": "List.mode",
+        "fixedCode": "snapshot"
+      },
+      {
+        "id": "List.code",
+        "path": "List.code",
+        "min": 1,
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "code": "10160-0",
+              "system": "http://loinc.org"
+            }
+          ]
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "List.subject",
+        "path": "List.subject",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "List.date",
+        "path": "List.date",
+        "mustSupport": true
+      },
+      {
+        "id": "List.source",
+        "path": "List.source",
+        "mustSupport": true
+      },
+      {
+        "id": "List.entry",
+        "path": "List.entry",
+        "mustSupport": true
+      },
+      {
+        "id": "List.entry.item",
+        "path": "List.entry.item",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ode-encounter",
+  "url": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-encounter",
+  "name": "ODEEncounter",
+  "title": "ODE Encounter",
+  "status": "draft",
+  "description": "A visit within a referral episode, inheriting US Core Encounter. basedOn links the visit back to the originating referral. Created via POST /Encounter directly, or as part of an interim-content bundle via $append-interim. NOTE: FHIR R4 Encounter has no `note` element — an informal inter-provider information request belongs on Task.note or Observation.note, never invented here.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Encounter",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Encounter.basedOn",
+        "path": "Encounter.basedOn",
+        "short": "Reference to the originating referral ServiceRequest.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/ode/StructureDefinition/ode-referral-servicerequest"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

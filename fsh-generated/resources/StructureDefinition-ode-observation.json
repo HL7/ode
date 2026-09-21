@@ -1,0 +1,76 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ode-observation",
+  "url": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-observation",
+  "name": "ODEObservation",
+  "title": "ODE Observation",
+  "status": "draft",
+  "description": "A clinical finding arising during a referral episode, inheriting US Core Observation Clinical Result. Created via POST /Observation directly, or as part of an interim-content bundle via $append-interim. Where no established code system exists for the finding, use code.text rather than fabricating a coding — the OpenAPI contract's own worked example is site-specific radiation dosimetry for pre-radiation dental clearance.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-result",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "comment": "Use code.text (NOT a fabricated coding) where no established code system exists for the finding."
+      },
+      {
+        "id": "Observation.code.text",
+        "path": "Observation.code.text",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.encounter",
+        "path": "Observation.encounter",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/ode/StructureDefinition/ode-encounter"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.note",
+        "path": "Observation.note",
+        "short": "Free-text note — e.g. that the value was obtained via an informal inter-provider information request (COW 'letter' pattern) rather than a formal order.",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.bodySite",
+        "path": "Observation.bodySite",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.bodySite.extension:tooth",
+        "path": "Observation.bodySite.extension",
+        "sliceName": "tooth",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/us/ode/StructureDefinition/ode-tooth"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.derivedFrom",
+        "path": "Observation.derivedFrom",
+        "short": "R4 tooth-image correlation: point at the intraoral photo DocumentReference (ODEIntraoralPhotoDocumentReference) this finding is read from.",
+        "comment": "Because R4 DocumentReference has no bodySite element, an oral image is bound to a tooth by a companion Observation that carries bodySite (ODETooth) AND derivedFrom -> the photo. A receiver answers 'which tooth is this photo of?' off this Observation, not off the image resource.",
+        "mustSupport": true
+      }
+    ]
+  }
+}

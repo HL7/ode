@@ -1,0 +1,99 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ode-medical-to-dental-referral",
+  "url": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-medical-to-dental-referral",
+  "name": "ODEMedicalToDentalReferral",
+  "title": "ODE Medical-to-Dental Referral",
+  "status": "draft",
+  "description": "A referral originating in a medical system. Medical billing codes are must-support so the dentist need not look them up or run a CDT crosswalk: reasonCode is ICD-10-CM, and any requested service is CPT/HCPCS. CDT is NOT must-support in this direction. Tooth is should-support — the medical sender often will not know it. Imaging follows as a separate push after this referral (medical-side receivers expose no inbound pull) — see the Attachments interface, not modeled by this profile.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ServiceRequest",
+  "baseDefinition": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-referral-servicerequest",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ServiceRequest.code.coding",
+        "path": "ServiceRequest.code.coding",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "ServiceRequest.code.coding:cpt",
+        "path": "ServiceRequest.code.coding",
+        "sliceName": "cpt",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.code.coding:cpt.system",
+        "path": "ServiceRequest.code.coding.system",
+        "min": 1,
+        "fixedUri": "http://www.ama-assn.org/go/cpt"
+      },
+      {
+        "id": "ServiceRequest.code.coding:hcpcs",
+        "path": "ServiceRequest.code.coding",
+        "sliceName": "hcpcs",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.code.coding:hcpcs.system",
+        "path": "ServiceRequest.code.coding.system",
+        "min": 1,
+        "fixedUri": "http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets"
+      },
+      {
+        "id": "ServiceRequest.reasonCode",
+        "path": "ServiceRequest.reasonCode",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "coding.system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.reasonCode:icd10",
+        "path": "ServiceRequest.reasonCode",
+        "sliceName": "icd10",
+        "min": 1,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.reasonCode:icd10.coding.system",
+        "path": "ServiceRequest.reasonCode.coding.system",
+        "min": 1,
+        "fixedUri": "http://hl7.org/fhir/sid/icd-10-cm"
+      },
+      {
+        "id": "ServiceRequest.supportingInfo",
+        "path": "ServiceRequest.supportingInfo",
+        "short": "MS: referral/clinical note. Imaging is NOT embedded here — it follows as a separate push after this referral.",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.bodySite",
+        "path": "ServiceRequest.bodySite",
+        "short": "SHOULD support — the medical sender often will not know the tooth."
+      }
+    ]
+  }
+}

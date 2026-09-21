@@ -1,0 +1,98 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ode-intraoral-photo-documentreference",
+  "url": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-intraoral-photo-documentreference",
+  "name": "ODEIntraoralPhotoDocumentReference",
+  "title": "ODE Intraoral Photo DocumentReference (patient-submitted)",
+  "status": "draft",
+  "description": "A patient-submitted, non-radiographic intraoral photograph, conveyed inline with a dental->dental referral submission (POST / supportingInfo) and retrievable at GET /DocumentReference/{id}. Modeled as US Core DocumentReference rather than R4 Media, per the OpenAPI contract's own rationale: Media is removed in R5/R6 while DocumentReference is stable, and US Core has no Media profile. This is explicitly NOT the DICOM radiograph path (ImagingStudy + WADO-RS). R4 DocumentReference has no bodySite element, so the affected tooth is correlated via a companion ODEObservation (bodySite = tooth + derivedFrom -> this DocumentReference).",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DocumentReference",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DocumentReference.type",
+        "path": "DocumentReference.type",
+        "short": "LOINC 72170-4 Photographic image (should-populate; extensible binding, not fixed, since the OpenAPI contract states this is SHOULD not MS).",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "code": "72170-4",
+              "system": "http://loinc.org"
+            }
+          ]
+        }
+      },
+      {
+        "id": "DocumentReference.category",
+        "path": "DocumentReference.category",
+        "short": "Clinical photography (patient-submitted image)."
+      },
+      {
+        "id": "DocumentReference.author",
+        "path": "DocumentReference.author",
+        "short": "Patient-authored for patient-submitted photos; the capturing app/provider may also be recorded.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
+            ],
+            "_targetProfile": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support",
+                    "valueBoolean": false
+                  }
+                ]
+              },
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support",
+                    "valueBoolean": true
+                  }
+                ]
+              },
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support",
+                    "valueBoolean": false
+                  }
+                ]
+              },
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support",
+                    "valueBoolean": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DocumentReference.content.attachment.contentType",
+        "path": "DocumentReference.content.attachment.contentType",
+        "min": 1,
+        "patternCode": "image/jpeg"
+      },
+      {
+        "id": "DocumentReference.context.encounter",
+        "path": "DocumentReference.context.encounter",
+        "short": "The virtual (teledentistry) encounter the photo was captured during."
+      }
+    ]
+  }
+}

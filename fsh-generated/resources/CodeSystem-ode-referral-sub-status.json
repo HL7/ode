@@ -1,0 +1,60 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "ODEReferralSubStatusCS",
+  "id": "ode-referral-sub-status",
+  "title": "ODE Referral Sub-Status",
+  "description": "Granular referral progress codes carried on Task.businessStatus. Sourced from the 360X<->COW crosswalk (ode-360x-adapter/spec/mapping/360x-cow-crosswalk.md Table 1) — these are the sub-statuses the seven 360X referral transactions (PCC-55...61) actually drive, plus `scheduled`, the OpenAPI contract's own worked example. This is the same list the crosswalk already assumes exists at this CodeSystem's URL; defining it here is this IG fulfilling that assumption, not inventing new states.",
+  "url": "http://hl7.org/fhir/us/ode/CodeSystem/ode-referral-sub-status",
+  "concept": [
+    {
+      "code": "received",
+      "display": "Received",
+      "definition": "The referral was received (PCC-55 intake)."
+    },
+    {
+      "code": "scheduled",
+      "display": "Scheduled",
+      "definition": "An appointment has been scheduled for the referred patient."
+    },
+    {
+      "code": "accepted",
+      "display": "Accepted",
+      "definition": "The fulfiller accepted the referral (PCC-56 accept)."
+    },
+    {
+      "code": "declined",
+      "display": "Declined",
+      "definition": "The fulfiller declined the referral (PCC-56 decline)."
+    },
+    {
+      "code": "interim-results",
+      "display": "Interim Results",
+      "definition": "Interim clinical content has been attached to the open referral (PCC-59 / $append-interim)."
+    },
+    {
+      "code": "appointment-booked",
+      "display": "Appointment Booked",
+      "definition": "An appointment was booked and notified (PCC-60)."
+    },
+    {
+      "code": "appointment-noshow",
+      "display": "Appointment No-Show",
+      "definition": "The patient did not attend a booked appointment (PCC-61)."
+    },
+    {
+      "code": "outcome-final",
+      "display": "Outcome Final",
+      "definition": "The referral outcome was reported and the loop closed (PCC-57)."
+    },
+    {
+      "code": "cancelled",
+      "display": "Cancelled",
+      "definition": "The referral was cancelled (PCC-58)."
+    }
+  ],
+  "caseSensitive": true,
+  "experimental": false,
+  "count": 9
+}

@@ -9,6 +9,10 @@
     {
       "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
       "valueCode": "claims"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+      "valueInteger": 0
     }
   ],
   "url": "http://hl7.org/fhir/us/ode/ImplementationGuide/hl7.fhir.us.ode",
@@ -23,7 +27,7 @@
       "telecom": [
         {
           "system": "url",
-          "value": "http://hl7.org/Special/committees/claims"
+          "value": "http://www.hl7.org/Special/committees/claims"
         },
         {
           "system": "email",
@@ -58,8 +62,189 @@
   "fhirVersion": [
     "4.0.1"
   ],
+  "dependsOn": [
+    {
+      "packageId": "hl7.fhir.us.core",
+      "version": "6.1.0",
+      "uri": "http://hl7.org/fhir/us/core/ImplementationGuide/hl7.fhir.us.core",
+      "id": "hl7_fhir_us_core"
+    },
+    {
+      "packageId": "hl7.fhir.uv.cow",
+      "version": "1.0.0-ballot",
+      "uri": "http://hl7.org/fhir/uv/cow/ImplementationGuide/hl7.fhir.uv.cow",
+      "id": "hl7_fhir_uv_cow"
+    },
+    {
+      "packageId": "hl7.fhir.us.davinci-cdex",
+      "version": "2.0.0",
+      "uri": "http://hl7.org/fhir/us/davinci-cdex/ImplementationGuide/hl7.fhir.us.davinci-cdex",
+      "id": "hl7_fhir_us_davinci_cdex"
+    }
+  ],
   "definition": {
-    "resource": [],
+    "resource": [
+      {
+        "reference": {
+          "reference": "OperationDefinition/ode-append-interim"
+        },
+        "name": "Append interim clinical content to a referral",
+        "description": "Creates the supplied clinical resources (Encounter, DiagnosticReport, Observation, ...), attaches them to the referral Task's `output`, and advances `businessStatus` (typically to `interim-results`). Use this when new clinical findings arise mid-referral; use the initial transaction Bundle (POST /) for the initial referral submission only.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Requirements/fromNarrative"
+        },
+        "name": "Narrative Conformance Statements",
+        "description": "Conformance statements found throughout the use-case narratives (UC01-UC05) consolidated into this computable resource for traceability purposes.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-dental-to-dental-referral"
+        },
+        "name": "ODE Dental-to-Dental Referral",
+        "description": "A dentist-to-dentist referral. CDT is the working vocabulary and is must-support on the requested service. SNODENT is should-support for diagnostic/clinical granularity — modeled as an optional (non-MS) slice documented as SHOULD, because FHIR has no native should-support flag. No medical codes are required. Supporting imaging uses support-a-pull (receiver retrieves it) — see the Attachments interface, not modeled by this profile.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-dental-to-medical-referral"
+        },
+        "name": "ODE Dental-to-Medical Referral",
+        "description": "A dentist refers to a physician (e.g. AI sleep-apnea screening to sleep medicine). The physician acts and bills medically, so medical codes are must-support and CDT is not; SNODENT is should-support to preserve the dental finding. The screening/finding result that motivated the referral is must-support in supportingInfo. Imaging follows as a separate push after this referral (medical-side receivers expose no inbound pull).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-diagnosticreport"
+        },
+        "name": "ODE Diagnostic Report",
+        "description": "A diagnostic report arising during a referral episode, inheriting the US Core DiagnosticReport Note profile. Created via POST /DiagnosticReport directly, or as part of an interim-content bundle via $append-interim.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-encounter"
+        },
+        "name": "ODE Encounter",
+        "description": "A visit within a referral episode, inheriting US Core Encounter. basedOn links the visit back to the originating referral. Created via POST /Encounter directly, or as part of an interim-content bundle via $append-interim. NOTE: FHIR R4 Encounter has no `note` element — an informal inter-provider information request belongs on Task.note or Observation.note, never invented here.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-intraoral-photo-documentreference"
+        },
+        "name": "ODE Intraoral Photo DocumentReference (patient-submitted)",
+        "description": "A patient-submitted, non-radiographic intraoral photograph, conveyed inline with a dental->dental referral submission (POST / supportingInfo) and retrievable at GET /DocumentReference/{id}. Modeled as US Core DocumentReference rather than R4 Media, per the OpenAPI contract's own rationale: Media is removed in R5/R6 while DocumentReference is stable, and US Core has no Media profile. This is explicitly NOT the DICOM radiograph path (ImagingStudy + WADO-RS). R4 DocumentReference has no bodySite element, so the affected tooth is correlated via a companion ODEObservation (bodySite = tooth + derivedFrom -> this DocumentReference).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-medical-to-dental-referral"
+        },
+        "name": "ODE Medical-to-Dental Referral",
+        "description": "A referral originating in a medical system. Medical billing codes are must-support so the dentist need not look them up or run a CDT crosswalk: reasonCode is ICD-10-CM, and any requested service is CPT/HCPCS. CDT is NOT must-support in this direction. Tooth is should-support — the medical sender often will not know it. Imaging follows as a separate push after this referral (medical-side receivers expose no inbound pull) — see the Attachments interface, not modeled by this profile.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-medication-list"
+        },
+        "name": "ODE Medication List",
+        "description": "A point-in-time medication list conveyed with a referral so the receiving clinician has the patient's current medications before the encounter. Inherits base FHIR List (US Core has no List profile) — one of the two ODE classes that don't inherit US Core, the other being ODEReferralTask. Entries reference US Core MedicationRequest (ordered, or patient-reported via reportedBoolean).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-observation"
+        },
+        "name": "ODE Observation",
+        "description": "A clinical finding arising during a referral episode, inheriting US Core Observation Clinical Result. Created via POST /Observation directly, or as part of an interim-content bundle via $append-interim. Where no established code system exists for the finding, use code.text rather than fabricating a coding — the OpenAPI contract's own worked example is site-specific radiation dosimetry for pre-radiation dental clearance.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-referral-servicerequest"
+        },
+        "name": "ODE Referral (ServiceRequest)",
+        "description": "The dental-medical referral order, inheriting US Core ServiceRequest. Per the 360X<->COW crosswalk, this is what a PCC-55 Referral Request (OMG^O19) produces on the FHIR side, alongside the coordination Task. Do not instantiate directly — use one of the three directional profiles.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-referral-documentreference"
+        },
+        "name": "ODE Referral DocumentReference (supporting data / imaging)",
+        "description": "Supporting documents and images for a referral. Used both as a support-a-pull target (dental->dental: GET /DocumentReference/{id}) and as the resource carried in a $submit-attachment push (medical-side receivers). content.attachment.data carries small inline bytes; content.attachment.url is a retrievable pointer (FHIR Binary, or an ImagingStudy/WADO-RS endpoint for DICOM). Large DICOM must use ImagingStudy + WADO-RS, never inline bytes.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CapabilityStatement/ode-referral-initiator-client"
+        },
+        "name": "ODE Referral Initiator — Client",
+        "description": "A medical/dental system (or the 360X bridge on behalf of a 360X-only EHR) that creates referrals, follows Task status by referral-id, and sends/requests supporting data via CDex.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CapabilityStatement/ode-referral-recipient-server"
+        },
+        "name": "ODE Referral Recipient / Fulfiller — Server",
+        "description": "The dental ODE Native FHIR server role: accepts referral transaction Bundles, exposes the ODE workflow Task and ServiceRequest for read/search/update, and serves supporting documents/images.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/ode-referral-sub-status"
+        },
+        "name": "ODE Referral Sub-Status",
+        "description": "Granular referral progress codes carried on Task.businessStatus. Sourced from the 360X<->COW crosswalk (ode-360x-adapter/spec/mapping/360x-cow-crosswalk.md Table 1) — these are the sub-statuses the seven 360X referral transactions (PCC-55...61) actually drive, plus `scheduled`, the OpenAPI contract's own worked example. This is the same list the crosswalk already assumes exists at this CodeSystem's URL; defining it here is this IG fulfilling that assumption, not inventing new states.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/ode-referral-sub-status-vs"
+        },
+        "name": "ODE Referral Sub-Status Value Set",
+        "description": "All codes from ODEReferralSubStatusCS. Bound extensibly to Task.businessStatus — a build that needs a sub-status this list doesn't cover may still use local text or another coding, per the extensible binding.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-referral-task"
+        },
+        "name": "ODE Referral Task (workflow)",
+        "description": "The ODE workflow object and single source of truth for referral state, inheriting the HL7 Clinical Order Workflows (COW) Coordination Task profile. Per the 360X<->COW crosswalk, this Task is what a PCC-55 Referral Request produces alongside the referral ServiceRequest, and what the bridge mirrors to/from 360X transactions (PCC-56/57/58/59/60/61) — it never invents state beyond what that crosswalk assigns.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/ode-tooth-vs"
+        },
+        "name": "ODE Tooth Designation Value Set",
+        "description": "All codes in the ADA Universal Tooth Designation System, as published in HL7 Terminology (THO). ODE does not define its own tooth code system and does not use FDI/ISO 3950 notation — confirmed with the ADA that FDI is not used for US dental data.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/ode-referral-id"
+        },
+        "name": "ode-referral-id",
+        "description": "Search ServiceRequest and Task by the ODE referral identifier (system urn:ohia:referral-id).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ode-tooth"
+        },
+        "name": "Tooth designation",
+        "description": "Identifies a tooth using the ADA Universal Tooth Designation System as published in HL7 Terminology (THO). ODE does not define its own tooth code system. Confirmed with the ADA that FDI (ISO 3950) notation is not used for US dental data.",
+        "exampleBoolean": false
+      }
+    ],
     "page": {
       "nameUrl": "toc.html",
       "title": "Table of Contents",
@@ -105,6 +290,10 @@
       {
         "code": "releaselabel",
         "value": "ci-build"
+      },
+      {
+        "code": "pin-canonicals",
+        "value": "pin-multiples"
       },
       {
         "code": "path-history",

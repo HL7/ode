@@ -1,0 +1,229 @@
+{
+  "resourceType": "CapabilityStatement",
+  "id": "ode-referral-recipient-server",
+  "url": "http://hl7.org/fhir/us/ode/CapabilityStatement/ode-referral-recipient-server",
+  "format": [
+    "json",
+    "xml"
+  ],
+  "rest": [
+    {
+      "security": {
+        "service": [
+          {
+            "coding": [
+              {
+                "code": "SMART-on-FHIR",
+                "system": "http://terminology.hl7.org/CodeSystem/restful-security-service"
+              }
+            ]
+          }
+        ]
+      },
+      "interaction": [
+        {
+          "code": "transaction"
+        },
+        {
+          "code": "batch"
+        }
+      ],
+      "resource": [
+        {
+          "supportedProfile": [
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-referral-task"
+          ],
+          "interaction": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "search-type"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "patch"
+            }
+          ],
+          "searchParam": [
+            {
+              "name": "referral-id",
+              "definition": "http://hl7.org/fhir/us/ode/SearchParameter/ode-referral-id",
+              "type": "token"
+            },
+            {
+              "name": "status",
+              "type": "token"
+            }
+          ],
+          "operation": [
+            {
+              "name": "append-interim",
+              "definition": "http://hl7.org/fhir/us/ode/OperationDefinition/ode-append-interim",
+              "documentation": "Attach interim clinical content (Encounter, DiagnosticReport, Observation) to an open referral: creates the resources, attaches them to Task.output, and advances businessStatus (typically to interim-results). The ODE-native equivalent of a 360X PCC-59 Interim Consultation Note — usable with no bridge."
+            }
+          ],
+          "type": "Task"
+        },
+        {
+          "supportedProfile": [
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-referral-servicerequest",
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-medical-to-dental-referral",
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-dental-to-dental-referral",
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-dental-to-medical-referral"
+          ],
+          "interaction": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "search-type"
+            }
+          ],
+          "searchParam": [
+            {
+              "name": "referral-id",
+              "type": "token"
+            }
+          ],
+          "type": "ServiceRequest"
+        },
+        {
+          "supportedProfile": [
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-referral-documentreference",
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-intraoral-photo-documentreference"
+          ],
+          "interaction": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "search-type"
+            },
+            {
+              "code": "create"
+            }
+          ],
+          "operation": [
+            {
+              "name": "submit-attachment",
+              "definition": "http://hl7.org/fhir/us/davinci-cdex/OperationDefinition/submit-attachment",
+              "documentation": "Da Vinci CDex $submit-attachment — the separate-push imaging path used whenever the receiver is on the medical side (medical->dental, dental->medical). Dental->dental instead uses a pull (GET /DocumentReference/{id})."
+            }
+          ],
+          "type": "DocumentReference"
+        },
+        {
+          "supportedProfile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+          ],
+          "interaction": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "search-type"
+            }
+          ],
+          "type": "Patient"
+        },
+        {
+          "supportedProfile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"
+          ],
+          "interaction": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "search-type"
+            }
+          ],
+          "searchParam": [
+            {
+              "name": "patient",
+              "type": "reference"
+            }
+          ],
+          "type": "MedicationRequest"
+        },
+        {
+          "supportedProfile": [
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-medication-list"
+          ],
+          "interaction": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "search-type"
+            }
+          ],
+          "type": "List"
+        },
+        {
+          "supportedProfile": [
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-observation"
+          ],
+          "interaction": [
+            {
+              "code": "create"
+            },
+            {
+              "code": "read"
+            },
+            {
+              "code": "search-type"
+            }
+          ],
+          "type": "Observation"
+        },
+        {
+          "supportedProfile": [
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-diagnosticreport"
+          ],
+          "interaction": [
+            {
+              "code": "create"
+            },
+            {
+              "code": "read"
+            },
+            {
+              "code": "search-type"
+            }
+          ],
+          "type": "DiagnosticReport"
+        },
+        {
+          "supportedProfile": [
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-encounter"
+          ],
+          "interaction": [
+            {
+              "code": "create"
+            },
+            {
+              "code": "read"
+            },
+            {
+              "code": "search-type"
+            }
+          ],
+          "type": "Encounter"
+        }
+      ],
+      "mode": "server",
+      "documentation": "Accepts referral transaction Bundles, exposes the ODE workflow Task and ServiceRequest for read/search/update, and serves supporting documents/images."
+    }
+  ],
+  "name": "ODEReferralRecipientServer",
+  "title": "ODE Referral Recipient / Fulfiller — Server",
+  "description": "The dental ODE Native FHIR server role: accepts referral transaction Bundles, exposes the ODE workflow Task and ServiceRequest for read/search/update, and serves supporting documents/images. Also what the 360X bridge drives.",
+  "status": "draft",
+  "date": "2026-09-19",
+  "kind": "requirements",
+  "fhirVersion": "4.0.1"
+}

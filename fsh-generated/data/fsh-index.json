@@ -1,1 +1,162 @@
-[]
+[
+  {
+    "outputFile": "CapabilityStatement-ode-referral-initiator-client.json",
+    "fshName": "ODEReferralInitiatorClient",
+    "fshType": "Instance",
+    "fshFile": "capabilities\\capabilitystatements.fsh",
+    "startLine": 109,
+    "endLine": 143
+  },
+  {
+    "outputFile": "CapabilityStatement-ode-referral-recipient-server.json",
+    "fshName": "ODEReferralRecipientServer",
+    "fshType": "Instance",
+    "fshFile": "capabilities\\capabilitystatements.fsh",
+    "startLine": 13,
+    "endLine": 106
+  },
+  {
+    "outputFile": "CodeSystem-ode-referral-sub-status.json",
+    "fshName": "ODEReferralSubStatusCS",
+    "fshType": "CodeSystem",
+    "fshFile": "terminology\\terminology.fsh",
+    "startLine": 21,
+    "endLine": 36
+  },
+  {
+    "outputFile": "OperationDefinition-ode-append-interim.json",
+    "fshName": "ode-append-interim",
+    "fshType": "Instance",
+    "fshFile": "instances\\append-interim-operation.fsh",
+    "startLine": 6,
+    "endLine": 33
+  },
+  {
+    "outputFile": "Requirements-fromNarrative.json",
+    "fshName": "FromNarrative",
+    "fshType": "Instance",
+    "fshFile": "instances\\requirements-from-narrative.fsh",
+    "startLine": 8,
+    "endLine": 17
+  },
+  {
+    "outputFile": "SearchParameter-ode-referral-id.json",
+    "fshName": "ode-referral-id",
+    "fshType": "Instance",
+    "fshFile": "instances\\search-parameters.fsh",
+    "startLine": 11,
+    "endLine": 23
+  },
+  {
+    "outputFile": "StructureDefinition-ode-dental-to-dental-referral.json",
+    "fshName": "ODEDentalToDentalReferral",
+    "fshType": "Profile",
+    "fshFile": "profiles\\referrals.fsh",
+    "startLine": 101,
+    "endLine": 124
+  },
+  {
+    "outputFile": "StructureDefinition-ode-dental-to-medical-referral.json",
+    "fshName": "ODEDentalToMedicalReferral",
+    "fshType": "Profile",
+    "fshFile": "profiles\\referrals.fsh",
+    "startLine": 127,
+    "endLine": 151
+  },
+  {
+    "outputFile": "StructureDefinition-ode-diagnosticreport.json",
+    "fshName": "ODEDiagnosticReport",
+    "fshType": "Profile",
+    "fshFile": "profiles\\clinical.fsh",
+    "startLine": 88,
+    "endLine": 99
+  },
+  {
+    "outputFile": "StructureDefinition-ode-encounter.json",
+    "fshName": "ODEEncounter",
+    "fshType": "Profile",
+    "fshFile": "profiles\\clinical.fsh",
+    "startLine": 74,
+    "endLine": 85
+  },
+  {
+    "outputFile": "StructureDefinition-ode-intraoral-photo-documentreference.json",
+    "fshName": "ODEIntraoralPhotoDocumentReference",
+    "fshType": "Profile",
+    "fshFile": "profiles\\clinical.fsh",
+    "startLine": 26,
+    "endLine": 47
+  },
+  {
+    "outputFile": "StructureDefinition-ode-medical-to-dental-referral.json",
+    "fshName": "ODEMedicalToDentalReferral",
+    "fshType": "Profile",
+    "fshFile": "profiles\\referrals.fsh",
+    "startLine": 74,
+    "endLine": 98
+  },
+  {
+    "outputFile": "StructureDefinition-ode-medication-list.json",
+    "fshName": "ODEMedicationList",
+    "fshType": "Profile",
+    "fshFile": "profiles\\clinical.fsh",
+    "startLine": 56,
+    "endLine": 71
+  },
+  {
+    "outputFile": "StructureDefinition-ode-observation.json",
+    "fshName": "ODEObservation",
+    "fshType": "Profile",
+    "fshFile": "profiles\\clinical.fsh",
+    "startLine": 102,
+    "endLine": 122
+  },
+  {
+    "outputFile": "StructureDefinition-ode-referral-documentreference.json",
+    "fshName": "ODEReferralDocumentReference",
+    "fshType": "Profile",
+    "fshFile": "profiles\\clinical.fsh",
+    "startLine": 11,
+    "endLine": 23
+  },
+  {
+    "outputFile": "StructureDefinition-ode-referral-servicerequest.json",
+    "fshName": "ODEReferralServiceRequest",
+    "fshType": "Profile",
+    "fshFile": "profiles\\referrals.fsh",
+    "startLine": 22,
+    "endLine": 71
+  },
+  {
+    "outputFile": "StructureDefinition-ode-referral-task.json",
+    "fshName": "ODEReferralTask",
+    "fshType": "Profile",
+    "fshFile": "profiles\\workflow.fsh",
+    "startLine": 17,
+    "endLine": 70
+  },
+  {
+    "outputFile": "StructureDefinition-ode-tooth.json",
+    "fshName": "ODETooth",
+    "fshType": "Extension",
+    "fshFile": "extensions\\ode-tooth.fsh",
+    "startLine": 7,
+    "endLine": 16
+  },
+  {
+    "outputFile": "ValueSet-ode-referral-sub-status-vs.json",
+    "fshName": "ODEReferralSubStatusVS",
+    "fshType": "ValueSet",
+    "fshFile": "terminology\\terminology.fsh",
+    "startLine": 38,
+    "endLine": 43
+  },
+  {
+    "outputFile": "ValueSet-ode-tooth-vs.json",
+    "fshName": "ODEToothVS",
+    "fshType": "ValueSet",
+    "fshFile": "terminology\\terminology.fsh",
+    "startLine": 9,
+    "endLine": 14
+  }
+]

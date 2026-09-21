@@ -1,0 +1,84 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ode-dental-to-dental-referral",
+  "url": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-dental-to-dental-referral",
+  "name": "ODEDentalToDentalReferral",
+  "title": "ODE Dental-to-Dental Referral",
+  "status": "draft",
+  "description": "A dentist-to-dentist referral. CDT is the working vocabulary and is must-support on the requested service. SNODENT is should-support for diagnostic/clinical granularity — modeled as an optional (non-MS) slice documented as SHOULD, because FHIR has no native should-support flag. No medical codes are required. Supporting imaging uses support-a-pull (receiver retrieves it) — see the Attachments interface, not modeled by this profile.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ServiceRequest",
+  "baseDefinition": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-referral-servicerequest",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ServiceRequest.code.coding",
+        "path": "ServiceRequest.code.coding",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.code.coding:cdt",
+        "path": "ServiceRequest.code.coding",
+        "sliceName": "cdt",
+        "min": 1,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.code.coding:cdt.system",
+        "path": "ServiceRequest.code.coding.system",
+        "min": 1,
+        "fixedUri": "http://www.ada.org/cdt"
+      },
+      {
+        "id": "ServiceRequest.code.coding:snodent",
+        "path": "ServiceRequest.code.coding",
+        "sliceName": "snodent",
+        "short": "SHOULD support — SNODENT diagnostic/clinical detail (optional slice, not MS).",
+        "comment": "Senders SHOULD populate SNODENT when available; receivers MUST NOT reject a referral that omits it. Represented as a non-must-support slice because FHIR's only conformance flag is Must Support.",
+        "min": 0,
+        "max": "*"
+      },
+      {
+        "id": "ServiceRequest.code.coding:snodent.system",
+        "path": "ServiceRequest.code.coding.system",
+        "min": 1,
+        "fixedUri": "http://www.ada.org/snodent"
+      },
+      {
+        "id": "ServiceRequest.supportingInfo",
+        "path": "ServiceRequest.supportingInfo",
+        "short": "MS: clinical note; periodontal charting when perio-relevant. Supporting imaging is referenced elsewhere; the receiver retrieves it via support-a-pull, not in the initial submission."
+      },
+      {
+        "id": "ServiceRequest.bodySite",
+        "path": "ServiceRequest.bodySite",
+        "short": "MS, REQUIRED: the tooth (ode-tooth) — you cannot extract 'a tooth'.",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.bodySite.extension",
+        "path": "ServiceRequest.bodySite.extension",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.bodySite.extension:tooth",
+        "path": "ServiceRequest.bodySite.extension",
+        "sliceName": "tooth",
+        "min": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "resourceType": "Requirements",
+  "id": "fromNarrative",
+  "url": "http://hl7.org/fhir/us/ode/Requirements/fromNarrative",
+  "name": "FromNarrative",
+  "title": "Narrative Conformance Statements",
+  "status": "active",
+  "experimental": false,
+  "description": "Conformance statements found throughout the use-case narratives (UC01-UC05) consolidated into this computable resource for traceability purposes."
+}

@@ -1,0 +1,83 @@
+{
+  "resourceType": "CapabilityStatement",
+  "id": "ode-referral-initiator-client",
+  "url": "http://hl7.org/fhir/us/ode/CapabilityStatement/ode-referral-initiator-client",
+  "format": [
+    "json",
+    "xml"
+  ],
+  "rest": [
+    {
+      "security": {
+        "service": [
+          {
+            "coding": [
+              {
+                "code": "SMART-on-FHIR",
+                "system": "http://terminology.hl7.org/CodeSystem/restful-security-service"
+              }
+            ]
+          }
+        ]
+      },
+      "interaction": [
+        {
+          "code": "transaction"
+        }
+      ],
+      "resource": [
+        {
+          "supportedProfile": [
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-medical-to-dental-referral",
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-dental-to-dental-referral",
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-dental-to-medical-referral"
+          ],
+          "interaction": [
+            {
+              "code": "create"
+            }
+          ],
+          "type": "ServiceRequest"
+        },
+        {
+          "supportedProfile": [
+            "http://hl7.org/fhir/us/ode/StructureDefinition/ode-referral-task"
+          ],
+          "interaction": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "search-type"
+            }
+          ],
+          "searchParam": [
+            {
+              "name": "referral-id",
+              "type": "token"
+            }
+          ],
+          "type": "Task"
+        },
+        {
+          "operation": [
+            {
+              "name": "submit-attachment",
+              "definition": "http://hl7.org/fhir/us/davinci-cdex/OperationDefinition/submit-attachment"
+            }
+          ],
+          "type": "DocumentReference"
+        }
+      ],
+      "mode": "client",
+      "documentation": "Creates referrals (transaction Bundle), follows Task status by referral-id, and sends/requests supporting data via CDex. The 360X bridge implements this client role for a 360X-only medical EHR."
+    }
+  ],
+  "name": "ODEReferralInitiatorClient",
+  "title": "ODE Referral Initiator — Client",
+  "description": "A medical/dental system (or the 360X bridge on behalf of a 360X-only EHR) that creates referrals, follows Task status by referral-id, and sends/requests supporting data via CDex.",
+  "status": "draft",
+  "date": "2026-09-19",
+  "kind": "requirements",
+  "fhirVersion": "4.0.1"
+}
