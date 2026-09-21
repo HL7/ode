@@ -1,0 +1,16 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "ode-referral-id",
+  "url": "http://hl7.org/fhir/us/ode/SearchParameter/ode-referral-id",
+  "base": [
+    "ServiceRequest",
+    "Task"
+  ],
+  "name": "ODEReferralId",
+  "status": "draft",
+  "experimental": false,
+  "description": "Search ServiceRequest and Task by the ODE referral identifier (system urn:ohia:referral-id).",
+  "code": "referral-id",
+  "type": "token",
+  "expression": "ServiceRequest.identifier.where(system='urn:ohia:referral-id') | Task.identifier.where(system='urn:ohia:referral-id')"
+}

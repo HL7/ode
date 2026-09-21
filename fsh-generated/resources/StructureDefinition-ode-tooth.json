@@ -1,0 +1,58 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ode-tooth",
+  "url": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-tooth",
+  "name": "ODETooth",
+  "title": "Tooth designation",
+  "status": "draft",
+  "description": "Identifies a tooth using the ADA Universal Tooth Designation System as published in HL7 Terminology (THO). ODE does not define its own tooth code system. Confirmed with the ADA that FDI (ISO 3950) notation is not used for US dental data.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "ServiceRequest.bodySite"
+    },
+    {
+      "type": "element",
+      "expression": "Observation.bodySite"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Tooth designation",
+        "definition": "Identifies a tooth using the ADA Universal Tooth Designation System as published in HL7 Terminology (THO). ODE does not define its own tooth code system. Confirmed with the ADA that FDI (ISO 3950) notation is not used for US dental data."
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-tooth"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/ode/ValueSet/ode-tooth-vs"
+        }
+      }
+    ]
+  }
+}

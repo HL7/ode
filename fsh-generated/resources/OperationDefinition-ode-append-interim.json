@@ -1,0 +1,35 @@
+{
+  "resourceType": "OperationDefinition",
+  "id": "ode-append-interim",
+  "url": "http://hl7.org/fhir/us/ode/OperationDefinition/ode-append-interim",
+  "resource": [
+    "Task"
+  ],
+  "parameter": [
+    {
+      "name": "content",
+      "use": "in",
+      "min": 1,
+      "max": "1",
+      "documentation": "A collection Bundle of the interim clinical resources to attach (ODEEncounter, ODEDiagnosticReport, ODEObservation).",
+      "type": "Bundle"
+    },
+    {
+      "name": "return",
+      "use": "out",
+      "min": 1,
+      "max": "1",
+      "documentation": "The updated referral Task, with `output` populated and `businessStatus` advanced.",
+      "type": "Task"
+    }
+  ],
+  "name": "ODEAppendInterim",
+  "title": "Append interim clinical content to a referral",
+  "status": "draft",
+  "kind": "operation",
+  "description": "Creates the supplied clinical resources (Encounter, DiagnosticReport, Observation, ...), attaches them to the referral Task's `output`, and advances `businessStatus` (typically to `interim-results`). Use this when new clinical findings arise mid-referral; use the initial transaction Bundle (POST /) for the initial referral submission only.",
+  "code": "append-interim",
+  "system": false,
+  "type": false,
+  "instance": true
+}

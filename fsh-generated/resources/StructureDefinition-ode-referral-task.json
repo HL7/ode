@@ -1,0 +1,149 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ode-referral-task",
+  "url": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-referral-task",
+  "name": "ODEReferralTask",
+  "title": "ODE Referral Task (workflow)",
+  "status": "draft",
+  "description": "The ODE workflow object and single source of truth for referral state, inheriting the HL7 Clinical Order Workflows (COW) Coordination Task profile. Per the 360X<->COW crosswalk, this Task is what a PCC-55 Referral Request produces alongside the referral ServiceRequest, and what the bridge mirrors to/from 360X transactions (PCC-56/57/58/59/60/61) — it never invents state beyond what that crosswalk assigns.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Task",
+  "baseDefinition": "http://hl7.org/fhir/uv/cow/StructureDefinition/coordination-task",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Task.identifier",
+        "path": "Task.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Task.identifier:referralId",
+        "path": "Task.identifier",
+        "sliceName": "referralId",
+        "short": "The 360X<->COW loop key: v2 ORC-2 on the wire, this identifier on the FHIR side.",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Task.identifier:referralId.system",
+        "path": "Task.identifier.system",
+        "min": 1,
+        "fixedUri": "urn:ohia:referral-id"
+      },
+      {
+        "id": "Task.identifier:referralId.value",
+        "path": "Task.identifier.value",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Task.status",
+        "path": "Task.status",
+        "short": "Per the crosswalk, this build exercises requested | accepted | in-progress | completed | rejected | cancelled — the full base task-status value set stays bound (required) since COW itself allows more.",
+        "mustSupport": true
+      },
+      {
+        "id": "Task.businessStatus",
+        "path": "Task.businessStatus",
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "http://hl7.org/fhir/us/ode/ValueSet/ode-referral-sub-status-vs"
+        }
+      },
+      {
+        "id": "Task.intent",
+        "path": "Task.intent",
+        "fixedCode": "order"
+      },
+      {
+        "id": "Task.code",
+        "path": "Task.code",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "code": "fulfill",
+              "system": "http://hl7.org/fhir/CodeSystem/task-code"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Task.focus",
+        "path": "Task.focus",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/ode/StructureDefinition/ode-referral-servicerequest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Task.for",
+        "path": "Task.for",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Task.requester",
+        "path": "Task.requester",
+        "mustSupport": true
+      },
+      {
+        "id": "Task.owner",
+        "path": "Task.owner",
+        "short": "Scoped to the accepting-provider identity only (who accepted on PCC-56 accept) — not full COW baton-passing/reassignment, per the crosswalk's explicit out-of-scope list. Do not populate at initial intake, before a fulfiller has accepted.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Task.note",
+        "path": "Task.note",
+        "short": "Free-text notes, including an informal inter-provider information request — the base COW IG's 'Requesting additional information' pattern (RESTful query / letter / instruction; a note here implements 'letter'). The request itself has no dedicated resource; resulting content attaches via $append-interim.",
+        "mustSupport": true
+      },
+      {
+        "id": "Task.input",
+        "path": "Task.input",
+        "short": "The referral package on intake (e.g. Condition, MedicationRequest, ODEMedicationList, AllergyIntolerance) — adopted COW scope per the crosswalk §3.",
+        "mustSupport": true
+      },
+      {
+        "id": "Task.output",
+        "path": "Task.output",
+        "short": "Interim or outcome resources attached as the referral progresses (e.g. via $append-interim) — adopted COW scope per the crosswalk §3.",
+        "mustSupport": true
+      }
+    ]
+  }
+}

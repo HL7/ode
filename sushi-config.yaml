@@ -21,22 +21,26 @@ extension:
     valueCode: draft
   - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-wg
     valueCode: claims
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+    valueInteger: 0
 
 publisher:
   name: HL7 International / Payer/Provider Information Exchange Work Group
-  url: http://hl7.org/Special/committees/claims
+  url: http://www.hl7.org/Special/committees/claims
   email: pie@lists.hl7.org
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
 # use cases, the value can be an object with keys for id, uri, and version.
 #
-# dependencies:
-#   hl7.fhir.us.core: 3.1.0
-#   hl7.fhir.us.mcode:
-#     id: mcode
-#     uri: http://hl7.org/fhir/us/mcode/ImplementationGuide/hl7.fhir.us.mcode
-#     version: 1.0.0
+dependencies:
+  # ported from ode-ig — profiles inherit US Core 6.1.0 (us-core-servicerequest, etc.)
+  hl7.fhir.us.core: 6.1.0
+  # ported from ode-ig — ODEReferralTask inherits the COW Task profile.
+  hl7.fhir.uv.cow: 1.0.0-ballot
+  # required to resolve the $submit-attachment operation referenced by the
+  # CapabilityStatements' DocumentReference resource (imaging support-a-pull path).
+  hl7.fhir.us.davinci-cdex: 2.0.0
 #
 #
 # The pages property corresponds to IG.definition.page. SUSHI can
@@ -75,9 +79,11 @@ pages:
 # For parameters defined by the FHIR Tools IG see:
 # http://build.fhir.org/ig/FHIR/fhir-tools-ig/branches/master/CodeSystem-ig-parameters.html
 #
-# parameters:
-#   excludettl: true
-#   validation: [allow-any-extensions, no-broken-links]
+parameters:
+  # Two versions of hl7.terminology.r4 (5.0.0 transitive, 7.3.0 declared) both provide
+  # some v2/v3 ValueSets referenced by US Core; pin to the version actually resolved
+  # (3.0.0) to remove the ambiguity warnings.
+  pin-canonicals: pin-multiples
 #
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
@@ -147,13 +153,11 @@ contact:
 # The following are simple examples to demonstrate what this might
 # look like:
 #
-# resources:
-#   Patient/my-example-patient:
-#     name: My Example Patient
-#     description: An example Patient
-#     exampleBoolean: true
-#   Patient/bad-example: omit
-#
+resources:
+  CapabilityStatement/ode-referral-recipient-server:
+    description: "The dental ODE Native FHIR server role: accepts referral transaction Bundles, exposes the ODE workflow Task and ServiceRequest for read/search/update, and serves supporting documents/images."
+  CapabilityStatement/ode-referral-initiator-client:
+    description: "A medical/dental system (or the 360X bridge on behalf of a 360X-only EHR) that creates referrals, follows Task status by referral-id, and sends/requests supporting data via CDex."
 #
 # Groups can control certain aspects of the IG generation.  The IG
 # documentation recommends that authors use the default groups that

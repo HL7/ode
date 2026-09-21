@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "ODEReferralSubStatusVS",
+  "id": "ode-referral-sub-status-vs",
+  "title": "ODE Referral Sub-Status Value Set",
+  "description": "All codes from ODEReferralSubStatusCS. Bound extensibly to Task.businessStatus — a build that needs a sub-status this list doesn't cover may still use local text or another coding, per the extensible binding.",
+  "url": "http://hl7.org/fhir/us/ode/ValueSet/ode-referral-sub-status-vs",
+  "experimental": false,
+  "compose": {
+    "include": [
+      {
+        "system": "http://hl7.org/fhir/us/ode/CodeSystem/ode-referral-sub-status"
+      }
+    ]
+  }
+}

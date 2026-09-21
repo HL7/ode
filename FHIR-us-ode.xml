@@ -4,6 +4,26 @@
 <artifactPageExtension value="-definitions"/>
 <artifactPageExtension value="-examples"/>
 <artifactPageExtension value="-mappings"/>
+<artifact id="OperationDefinition/ode-append-interim" key="OperationDefinition-ode-append-interim" name="Append interim clinical content to a referral"/>
+<artifact id="Requirements/fromNarrative" key="Requirements-fromNarrative" name="Narrative Conformance Statements"/>
+<artifact id="StructureDefinition/ode-dental-to-dental-referral" key="StructureDefinition-ode-dental-to-dental-referral" name="ODE Dental-to-Dental Referral"/>
+<artifact id="StructureDefinition/ode-dental-to-medical-referral" key="StructureDefinition-ode-dental-to-medical-referral" name="ODE Dental-to-Medical Referral"/>
+<artifact id="StructureDefinition/ode-diagnosticreport" key="StructureDefinition-ode-diagnosticreport" name="ODE Diagnostic Report"/>
+<artifact id="StructureDefinition/ode-encounter" key="StructureDefinition-ode-encounter" name="ODE Encounter"/>
+<artifact id="StructureDefinition/ode-intraoral-photo-documentreference" key="StructureDefinition-ode-intraoral-photo-documentreference" name="ODE Intraoral Photo DocumentReference (patient-submitted)"/>
+<artifact id="StructureDefinition/ode-medical-to-dental-referral" key="StructureDefinition-ode-medical-to-dental-referral" name="ODE Medical-to-Dental Referral"/>
+<artifact id="StructureDefinition/ode-medication-list" key="StructureDefinition-ode-medication-list" name="ODE Medication List"/>
+<artifact id="StructureDefinition/ode-observation" key="StructureDefinition-ode-observation" name="ODE Observation"/>
+<artifact id="StructureDefinition/ode-referral-servicerequest" key="StructureDefinition-ode-referral-servicerequest" name="ODE Referral (ServiceRequest)"/>
+<artifact id="StructureDefinition/ode-referral-documentreference" key="StructureDefinition-ode-referral-documentreference" name="ODE Referral DocumentReference (supporting data / imaging)"/>
+<artifact id="CapabilityStatement/ode-referral-initiator-client" key="CapabilityStatement-ode-referral-initiator-client" name="ODE Referral Initiator — Client"/>
+<artifact id="CapabilityStatement/ode-referral-recipient-server" key="CapabilityStatement-ode-referral-recipient-server" name="ODE Referral Recipient / Fulfiller — Server"/>
+<artifact id="CodeSystem/ode-referral-sub-status" key="CodeSystem-ode-referral-sub-status" name="ODE Referral Sub-Status"/>
+<artifact id="ValueSet/ode-referral-sub-status-vs" key="ValueSet-ode-referral-sub-status-vs" name="ODE Referral Sub-Status Value Set"/>
+<artifact id="StructureDefinition/ode-referral-task" key="StructureDefinition-ode-referral-task" name="ODE Referral Task (workflow)"/>
+<artifact id="ValueSet/ode-tooth-vs" key="ValueSet-ode-tooth-vs" name="ODE Tooth Designation Value Set"/>
+<artifact id="StructureDefinition/ode-tooth" key="StructureDefinition-ode-tooth" name="Tooth designation"/>
+<artifact id="SearchParameter/ode-referral-id" key="SearchParameter-ode-referral-id" name="ode-referral-id"/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page key="artifacts" name="Artifacts Summary"/>

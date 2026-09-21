@@ -1,0 +1,141 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ode-referral-servicerequest",
+  "url": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-referral-servicerequest",
+  "name": "ODEReferralServiceRequest",
+  "title": "ODE Referral (ServiceRequest)",
+  "status": "draft",
+  "description": "The dental-medical referral order, inheriting US Core ServiceRequest. Per the 360X<->COW crosswalk, this is what a PCC-55 Referral Request (OMG^O19) produces on the FHIR side, alongside the coordination Task. Do not instantiate directly — use one of the three directional profiles.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ServiceRequest",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-servicerequest",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ServiceRequest.identifier",
+        "path": "ServiceRequest.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.identifier:referralId",
+        "path": "ServiceRequest.identifier",
+        "sliceName": "referralId",
+        "short": "The 360X<->COW loop key: v2 ORC-2 on the wire, this identifier on the FHIR side.",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.identifier:referralId.system",
+        "path": "ServiceRequest.identifier.system",
+        "min": 1,
+        "fixedUri": "urn:ohia:referral-id"
+      },
+      {
+        "id": "ServiceRequest.identifier:referralId.value",
+        "path": "ServiceRequest.identifier.value",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.status",
+        "path": "ServiceRequest.status",
+        "short": "Request.status. Per the 360X<->COW crosswalk (Table 1), the lifecycle this referral actually exercises is active -> completed / revoked; the binding is left at base FHIR request-status (required) rather than further constrained, since a non-360X initiator is not ruled out by this IG."
+      },
+      {
+        "id": "ServiceRequest.intent",
+        "path": "ServiceRequest.intent",
+        "fixedCode": "order"
+      },
+      {
+        "id": "ServiceRequest.requester",
+        "path": "ServiceRequest.requester",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
+            ],
+            "_targetProfile": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support",
+                    "valueBoolean": true
+                  }
+                ]
+              },
+              null,
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support",
+                    "valueBoolean": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.reasonCode",
+        "path": "ServiceRequest.reasonCode",
+        "short": "Directional profiles set their own cardinality and coding must-support on this element — see each child profile.",
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.supportingInfo",
+        "path": "ServiceRequest.supportingInfo",
+        "short": "Directional profiles set their own cardinality on this element — see each child profile.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.bodySite",
+        "path": "ServiceRequest.bodySite",
+        "short": "Carries the ode-tooth extension for tooth-specific referrals. Required (1..*, tooth 1..1 MS) on ODEDentalToDentalReferral; should-support elsewhere.",
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.bodySite.extension:tooth",
+        "path": "ServiceRequest.bodySite.extension",
+        "sliceName": "tooth",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/us/ode/StructureDefinition/ode-tooth"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

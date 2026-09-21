@@ -1,0 +1,24 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ode-referral-documentreference",
+  "url": "http://hl7.org/fhir/us/ode/StructureDefinition/ode-referral-documentreference",
+  "name": "ODEReferralDocumentReference",
+  "title": "ODE Referral DocumentReference (supporting data / imaging)",
+  "status": "draft",
+  "description": "Supporting documents and images for a referral. Used both as a support-a-pull target (dental->dental: GET /DocumentReference/{id}) and as the resource carried in a $submit-attachment push (medical-side receivers). content.attachment.data carries small inline bytes; content.attachment.url is a retrievable pointer (FHIR Binary, or an ImagingStudy/WADO-RS endpoint for DICOM). Large DICOM must use ImagingStudy + WADO-RS, never inline bytes.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DocumentReference",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DocumentReference.content.attachment.contentType",
+        "path": "DocumentReference.content.attachment.contentType",
+        "min": 1
+      }
+    ]
+  }
+}
